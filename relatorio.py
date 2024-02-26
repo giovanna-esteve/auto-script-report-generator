@@ -1,8 +1,6 @@
 from openpyxl import load_workbook
 from openpyxl.chart import BarChart, Reference
-import web_scraping as wsg
-import sys
-import os
+import web_scraping_goodreads as wsg
 
 df_world = wsg.mais_lidos_da_semana_no_mundo()
 df_brazil = wsg.mais_lidos_da_semana_no_brasil()

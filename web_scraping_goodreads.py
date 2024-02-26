@@ -42,12 +42,16 @@ def mais_lidos_da_semana_no_brasil():
     now = datetime.now()
     data = now.strftime("%d%m%Y")
 
+    # gerar excel no executavel relatorio.exe
+    '''
     caminho = os.path.dirname(sys.executable)
     df.to_excel(os.path.join(caminho, f'{data}_brazil_week.xlsx'))
+    '''
 
-    #df.to_excel(f'{data}_brazil_week.xlsx')
+    # gerar excel no arquivo relatorio.py
+    df.to_excel(f'{data}_brazil_week.xlsx')
+
     driver.quit()
-
     return df
 
 
@@ -94,13 +98,15 @@ def mais_lidos_da_semana_no_mundo():
     data = now.strftime("%d%m%Y")
 
     # gerar excel no executavel relatorio.exe
+    '''
     caminho = os.path.dirname(sys.executable)
     df.to_excel(os.path.join(caminho, f'{data}_world_week.xlsx'))
+    '''
 
     # gerar excel no arquivo relatorio.py
-    #df.to_excel(f'{data}_world_week.xlsx')
-    driver.quit()
+    df.to_excel(f'{data}_world_week.xlsx')
 
+    driver.quit()
     return df
 
 
@@ -159,10 +165,15 @@ def pivot_table_mundo_brasil(df_world, df_brazil):
     now = datetime.now()
     data = now.strftime("%d%m%Y")
 
+    # gerar excel no executavel relatorio.exe
+    '''
     caminho = os.path.dirname(sys.executable)
     file_name = os.path.join(caminho, f'{data}_relatorio.xlsx')
+    '''
 
-    #file_name = f'{data}_relatorio.xlsx'
+    # gerar excel no arquivo relatorio.py
+    file_name = f'{data}_relatorio.xlsx'
+
     with pd.ExcelWriter(file_name) as writer:
         pivot_table_completo.to_excel(writer, sheet_name="graficos", startrow=2)
         pivot_table_mundo.to_excel(writer, sheet_name="pivot_table", startrow=2)
