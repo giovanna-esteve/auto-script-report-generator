@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
 from datetime import datetime
@@ -7,15 +7,13 @@ import sys
 import os
 
 def mais_lidos_da_semana_no_brasil():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
 
     website = "https://www.goodreads.com/book/most_read?utf8=%E2%9C%93&country=BR&duration=w"
-    path = "/Users/giovanna/Documents/chromedriver-win32/chromedriver"
-
-    options = Options()
-    options.headless = True
-
-    service = Service(executable_path=path)
-    driver = webdriver.Chrome(service=service, options=options)
     driver.get(website)
 
     livros = driver.find_elements(by="xpath", value='//tr[@itemtype="http://schema.org/Book"]')
@@ -56,15 +54,13 @@ def mais_lidos_da_semana_no_brasil():
 
 
 def mais_lidos_da_semana_no_mundo():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
 
     website = "https://www.goodreads.com/book/most_read?category=all&country=all&duration=w"
-    path = "/Users/giovanna/Documents/chromedriver-win32/chromedriver"
-
-    options = Options()
-    options.headless = True
-
-    service = Service(executable_path=path)
-    driver = webdriver.Chrome(service=service, options=options)
     driver.get(website)
 
     livros = driver.find_elements(by="xpath", value='//tr[@itemtype="http://schema.org/Book"]')
