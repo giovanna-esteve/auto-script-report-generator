@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
@@ -6,7 +7,9 @@ from datetime import datetime
 
 def mais_lidos_da_semana_no_mundo():
     service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+    options = Options()
+    options.add_argument("--headless")
+    driver = webdriver.Chrome(service=service, options=options)
 
     website = "https://www.goodreads.com/book/most_read?category=all&country=all&duration=w"
     driver.get(website)
@@ -49,7 +52,9 @@ def mais_lidos_da_semana_no_mundo():
 
 def mais_lidos_da_semana_no_brasil():
     service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+    options = Options()
+    options.add_argument("--headless")
+    driver = webdriver.Chrome(service=service, options=options)
 
     website = "https://www.goodreads.com/book/most_read?utf8=%E2%9C%93&country=BR&duration=w"
     driver.get(website)
